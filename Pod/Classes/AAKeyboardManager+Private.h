@@ -20,14 +20,37 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 //
-//  AAViewController.h
+//  AAKeyboardManager+Private.h
 //  AAKeyboardManager
 //
 //  Created by Anil Anar on 19.02.2015.
 //
 
-#import <UIKit/UIKit.h>
+#import "AAKeyboardManager.h"
 
-@interface AAViewController : UIViewController
+@interface AADefaultKeyboardAnimator : NSObject<AAKeyboardAnimator>
+
+@property(copy, nonatomic) AAKeyboardAnimation animation;
+
+- (instancetype)initWithAnimation:(void (^)(AAKeyboardNotification *))animation;
+- (void)animateForNotification:(AAKeyboardNotification *)notification;
+
+@end
+
+@interface AAKeyboardNotification ()
+
+@property(assign, nonatomic, readwrite) AAKeyboardNotificationType type;
+
+@end
+
+@interface AAKeyboardManager ()
+
++ (NSArray *)notifications;
++ (SEL)selectorForIndex:(NSUInteger)index;
+
+- (void)addObserver:(NSString *)name selector:(SEL)selector;
+- (void)removeObserver:(NSString *)name;
+- (AAKeyboardNotification *)convertNotification:(NSNotification *)notification;
+- (void)runAnimators:(NSNotification *)notification;
 
 @end

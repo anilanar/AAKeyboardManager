@@ -3,9 +3,3 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'AAKeyboardManager', :exclusive => true do
   pod "AAKeyboardManager", :path => "../"
 end
-
-target 'Tests', :exclusive => true do
-  pod "AAKeyboardManager", :path => "../"
-
-  
-end

@@ -20,14 +20,48 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 //
-//  AAViewController.h
+//  AAKeyboardViewController.m
 //  AAKeyboardManager
 //
 //  Created by Anil Anar on 19.02.2015.
 //
 
-#import <UIKit/UIKit.h>
+#import "AAScrollViewController.h"
+#import <AAKeyboardManager/AAKeyboardManager.h>
 
-@interface AAViewController : UIViewController
+@interface AAScrollViewController ()
+
+@property(weak, nonatomic) IBOutlet NSLayoutConstraint *bottomMarginConstraint;
+@property(weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property(strong, nonatomic) AAKeyboardManager *keyboardManager;
+
+@end
+
+@implementation AAScrollViewController
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  self.bottomMarginConstraint.constant = 0.0;
+  self.keyboardManager =
+    [[AAKeyboardManager alloc] initWithReferenceView:self.view];
+
+  [self.keyboardManager addScrollViewAnimator:self.scrollView];
+
+  [self.keyboardManager start];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self.keyboardManager resume];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self.keyboardManager pause];
+}
+
+- (void)dealloc {
+  [self.keyboardManager stop];
+}
 
 @end

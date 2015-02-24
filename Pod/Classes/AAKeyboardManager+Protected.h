@@ -20,14 +20,38 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 //
-//  AAViewController.h
+//  AAKeyboardManager+Protected.h
 //  AAKeyboardManager
 //
 //  Created by Anil Anar on 19.02.2015.
 //
 
-#import <UIKit/UIKit.h>
+#import "AAKeyboardManager.h"
 
-@interface AAViewController : UIViewController
+@interface AAKeyboardManager ()
+
+@property(strong, nonatomic) NSMutableArray *mutableAnimators;
+
+/*!
+ *  @brief A Boolean value specifying whether keyboard is visible or not.
+ *
+ *  @discussion Default value is @c NO. This will not represent keyboard
+ *  visibility accruately in the following cases:
+ *  <li>after @c -start is called until first keyboard notification is
+ *  emitted.</li>
+ *  <li>after @c -stop is called.</li>
+ *
+ *  @since 0.1.0
+ */
+@property(assign, nonatomic, readwrite, getter=isKeyboardVisible)
+  BOOL keyboardVisible;
+@property(assign, nonatomic, getter=isStarted) BOOL started;
+@property(assign, nonatomic, getter=isPaused) BOOL paused;
+@property(assign, nonatomic, getter=isStopped) BOOL stopped;
+
+- (void)willShow:(NSNotification *)notification;
+- (void)willHide:(NSNotification *)notification;
+- (void)didShow:(NSNotification *)notification;
+- (void)didHide:(NSNotification *)notification;
 
 @end

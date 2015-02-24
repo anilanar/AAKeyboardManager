@@ -1,38 +1,13 @@
-#
-# Be sure to run `pod lib lint AAKeyboardManager.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "AAKeyboardManager"
   s.version          = "0.1.0"
-  s.summary          = "A short description of AAKeyboardManager."
-  s.description      = <<-DESC
-                       An optional longer description of AAKeyboardManager
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/AAKeyboardManager"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.summary          = "Keyboard manager for quickly integrating animations"
+  s.homepage         = "https://github.com/anilanar/AAKeyboardManager"
   s.license          = 'MIT'
-  s.author           = { "Anil Anar" => "anilanar@hotmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/AAKeyboardManager.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.platform     = :ios, '7.0'
+  s.author           = { "Anıl Anar" => "anilanar@hotmail.com" }
+  s.source           = { :git => "https://github.com/anilanar/AAKeyboardManager.git", :tag => s.version.to_s }
+  s.platform     = :ios, '7.1'
   s.requires_arc = true
-
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'AAKeyboardManager' => ['Pod/Assets/*.png']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'UIKit', 'Foundation'
 end

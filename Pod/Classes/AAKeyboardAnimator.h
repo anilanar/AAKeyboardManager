@@ -20,14 +20,43 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 //
-//  AAViewController.h
+//  AAKeyboardAnimator.h
 //  AAKeyboardManager
 //
 //  Created by Anil Anar on 19.02.2015.
 //
+#import <Foundation/Foundation.h>
+#import "AAKeyboardNotification.h"
 
-#import <UIKit/UIKit.h>
+/*!
+ *  An animation block to be run when a keyboard notification event is emitted.
+ *
+ *  @param AAKeyboardNotification An object that provides information on the
+ *notification
+ *  such as old frame, new frame and notification type.
+ *
+ *  @since 0.1.0
+ */
+typedef void (^AAKeyboardAnimation)(AAKeyboardNotification*);
 
-@interface AAViewController : UIViewController
+/*!
+ *  The @c AAKeyboardAnimator protocol defines an animation to be run given a
+ *keyboard
+ *  notification.
+ *
+ *  @since 0.1.0
+ */
+@protocol AAKeyboardAnimator<NSObject>
+
+/*!
+ *  When overridden, this should define an animation to be run given the
+ *keyboard
+ *  notification.
+ *
+ *  @param notification The keyboard notification.
+ *
+ *  @since 0.1.0
+ */
+- (void)animateForNotification:(AAKeyboardNotification*)notification;
 
 @end

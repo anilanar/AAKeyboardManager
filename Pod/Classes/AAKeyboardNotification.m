@@ -20,14 +20,32 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 //
-//  AAViewController.h
+//  AAKeyboardNotification.m
 //  AAKeyboardManager
 //
 //  Created by Anil Anar on 19.02.2015.
 //
 
-#import <UIKit/UIKit.h>
+#import "AAKeyboardNotification.h"
 
-@interface AAViewController : UIViewController
+@interface AAKeyboardNotification ()
+
+@property(assign, nonatomic) CGRect oldFrame;
+@property(assign, nonatomic) CGRect newFrame;
+@property(assign, nonatomic) AAKeyboardNotificationType type;
+
+@end
+
+@implementation AAKeyboardNotification
+
++ (instancetype)notificationWithOldFrame:(CGRect)oldFrame
+                                newFrame:(CGRect)newFrame
+                                    type:(AAKeyboardNotificationType)type {
+  AAKeyboardNotification *notification = [AAKeyboardNotification new];
+  notification.oldFrame = oldFrame;
+  notification.newFrame = newFrame;
+  notification.type = type;
+  return notification;
+}
 
 @end

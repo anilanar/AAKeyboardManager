@@ -20,7 +20,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 //
-//  AAViewController.h
+//  AAScrollViewController.h
 //  AAKeyboardManager
 //
 //  Created by Anil Anar on 19.02.2015.
@@ -28,6 +28,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AAViewController : UIViewController
+@interface AAScrollViewController : UIViewController
 
 @end
