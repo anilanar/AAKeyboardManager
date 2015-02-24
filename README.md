@@ -47,8 +47,6 @@ Animates a scroll view, modifying its content insets, scroll indicator insets an
 
 -
 
-After initializing an animator, you can add it to your keyboard manager: `[keyboardManager addAnimator: someAnimator]`.
-
 ### Creating Custom Animators
 
 There are currently two ways to create animators:
