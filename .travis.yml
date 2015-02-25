@@ -4,8 +4,6 @@ before_install:
 - brew update
 - if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
 - pod install --project-directory=Example
-install:
-- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-- set -o pipefail && xcodebuild test -workspace Example/AAKeyboardManager.xcworkspace -scheme AAKeyboardManager-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- xctool -workspace Example/AAKeyboardManager.xcworkspace -scheme AAKeyboardManager-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO clean build
 - pod lib lint --quick

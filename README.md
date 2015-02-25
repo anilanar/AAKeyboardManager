@@ -5,6 +5,15 @@
 [![License](https://img.shields.io/cocoapods/l/AAKeyboardManager.svg?style=flat)](http://cocoadocs.org/docsets/AAKeyboardManager)
 [![Platform](https://img.shields.io/cocoapods/p/AAKeyboardManager.svg?style=flat)](http://cocoadocs.org/docsets/AAKeyboardManager)
 
+`AAKeyboardManager` lets you manage the keyboard for iOS apps version `>7.1`. It introduces what's called animators that let you move up and down your views or content of scroll views when the keyboard displays or hides. It works well with rotations, hardware keyboard mode and undocking/splitting for iPad. It even lets your create your own custom animators if default ones won't meet your needs.
+
+## AAKeyboardNotification
+
+If you were to handle keyboard events yourself, you would register yourself as observer to `NSNotificationCenter` and handle incoming `NSNotification` objects. It has information about the keyboard animation, the begin frame and the new frame. One problem is, frames are in the coordinate system of the screen. The other is, height of the keyboard that is reported will always be the same even if it is displayed or dismissed.
+
+`AAKeyboardNotification` converts them to the coordinate system of a reference view, and the height reported is for the region the keyboard covers in the reference view. `AAKeyboardNotification` converts frames into something more meaningful.
+
+
 ## Installation
 
 AAKeyboardManager is available through [CocoaPods](http://cocoapods.org). To install
@@ -31,13 +40,13 @@ There are currenty three default animators:
 -
 `AAKeyboardManager::addConstraintAnimator:`
 
-Animates a constraint, modifying its `constant` property. 
+Animates a constraint, modifying its `constant` property. One would typically use this if `AutoLayout` is used.
 
 -
 
 `AAKeyboardManager::addFrameAnimator`
 
-Animates a view frame, modifying its height.
+Animates a view frame, modifying its height. One would typically use this if `AutoLayout` isn't used.
 
 -
 
@@ -51,11 +60,12 @@ Animates a scroll view, modifying its content insets, scroll indicator insets an
 
 There are currently two ways to create animators:
 
-- Create a class that conforms to `AAKeyboardAnimator` and add it to your keyboard manager, see default animator classes in the source for examples. 
+- Create a class that conforms to `AAKeyboardAnimator`.
 
 - Use `addAnimation:` method:
 
 	```
+	// An example of animating a frame
 	__weak typeof(self) weakSelf = self;
 	[keyboardManager addAnimation: ^(AAKeyboardNotification *notification) {
 	  CGRect frame = weakSelf.myView.frame;
