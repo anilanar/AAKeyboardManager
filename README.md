@@ -1,6 +1,6 @@
 # AAKeyboardManager
 
-[![CI Status](http://img.shields.io/travis/Anil Anar/AAKeyboardManager.svg?style=flat)](https://travis-ci.org/Anil Anar/AAKeyboardManager)
+[![CI Status](http://img.shields.io/travis/anilanar/AAKeyboardManager.svg?style=flat)](https://travis-ci.org/anilanar/AAKeyboardManager)
 [![Version](https://img.shields.io/cocoapods/v/AAKeyboardManager.svg?style=flat)](http://cocoadocs.org/docsets/AAKeyboardManager)
 [![License](https://img.shields.io/cocoapods/l/AAKeyboardManager.svg?style=flat)](http://cocoadocs.org/docsets/AAKeyboardManager)
 [![Platform](https://img.shields.io/cocoapods/p/AAKeyboardManager.svg?style=flat)](http://cocoadocs.org/docsets/AAKeyboardManager)
