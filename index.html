@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>AAKeyboardManager by anilanar</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">AAKeyboardManager</h1>
+        <p class="header">Keyboard manager for quickly integrating animations</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/anilanar/AAKeyboardManager/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/anilanar/AAKeyboardManager/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/anilanar/AAKeyboardManager">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/anilanar">anilanar</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a id="aakeyboardmanager" class="anchor" href="#aakeyboardmanager" aria-hidden="true"><span class="octicon octicon-link"></span></a>AAKeyboardManager</h1>
+
+<p><a href="https://travis-ci.org/anilanar/AAKeyboardManager"><img src="http://img.shields.io/travis/anilanar/AAKeyboardManager.svg?style=flat" alt="CI Status"></a>
+<a href="http://cocoadocs.org/docsets/AAKeyboardManager"><img src="https://img.shields.io/cocoapods/v/AAKeyboardManager.svg?style=flat" alt="Version"></a>
+<a href="http://cocoadocs.org/docsets/AAKeyboardManager"><img src="https://img.shields.io/cocoapods/l/AAKeyboardManager.svg?style=flat" alt="License"></a>
+<a href="http://cocoadocs.org/docsets/AAKeyboardManager"><img src="https://img.shields.io/cocoapods/p/AAKeyboardManager.svg?style=flat" alt="Platform"></a></p>
+
+<p><code>AAKeyboardManager</code> lets you manage the keyboard for iOS apps version <code>&gt;7.1</code>. It introduces what's called animators that let you move up and down your views or content of scroll views when the keyboard displays or hides. It works well with rotations, hardware keyboard mode and undocking/splitting for iPad. It even lets your create your own custom animators if default ones won't meet your needs.</p>
+
+<h2>
+<a id="aakeyboardnotification" class="anchor" href="#aakeyboardnotification" aria-hidden="true"><span class="octicon octicon-link"></span></a>AAKeyboardNotification</h2>
+
+<p>If you were to handle keyboard events yourself, you would register yourself as observer to <code>NSNotificationCenter</code> and handle incoming <code>NSNotification</code> objects. It has information about the keyboard animation, the begin frame and the new frame. One problem is, frames are in the coordinate system of the screen. The other is, height of the keyboard that is reported will always be the same even if it is displayed or dismissed.</p>
+
+<p><code>AAKeyboardNotification</code> converts them to the coordinate system of a reference view, and the height reported is for the region the keyboard covers in the reference view. <code>AAKeyboardNotification</code> converts frames into something more meaningful.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>AAKeyboardManager is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
+it, simply add the following line to your Podfile:</p>
+
+<pre><code>pod "AAKeyboardManager"
+</code></pre>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p><code>#import &lt;AAKeyboardManager/AAKeyboardManager.h&gt;</code></p>
+
+<p>There is a demo project with two examples: one with a regular view and the other with a scroll view both using <code>AutoLayout</code>. To run the example project, clone the repo, and run <code>pod install</code> from the Example directory first.</p>
+
+<h3>
+<a id="animating-uiscrollview" class="anchor" href="#animating-uiscrollview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Animating <code>UIScrollView</code>
+</h3>
+
+<p>If you want to animate scroll views and its subclasses such as <code>UICollectionView</code>, see <code>AAScrollViewController</code> in the demo project.</p>
+
+<h3>
+<a id="animating-uiview" class="anchor" href="#animating-uiview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Animating <code>UIView</code>
+</h3>
+
+<p>If you want to animate regular views, see <code>AAViewController</code> in the demo project.</p>
+
+<h3>
+<a id="using-default-animators" class="anchor" href="#using-default-animators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Default Animators</h3>
+
+<p>There are currenty three default animators:</p>
+
+<h2></h2>
+
+<p><code>AAKeyboardManager::addConstraintAnimator:</code></p>
+
+<p>Animates a constraint, modifying its <code>constant</code> property. One would typically use this if <code>AutoLayout</code> is used.</p>
+
+<h2></h2>
+
+<p><code>AAKeyboardManager::addFrameAnimator</code></p>
+
+<p>Animates a view frame, modifying its height. One would typically use this if <code>AutoLayout</code> isn't used.</p>
+
+<h2></h2>
+
+<p><code>AAKeyboardManager::addScrollViewAnimator:</code> </p>
+
+<p>Animates a scroll view, modifying its content insets, scroll indicator insets and optionally content offset.</p>
+
+<h2></h2>
+
+<h3>
+<a id="creating-custom-animators" class="anchor" href="#creating-custom-animators" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Custom Animators</h3>
+
+<p>There are currently two ways to create animators:</p>
+
+<ul>
+<li><p>Create a class that conforms to <code>AAKeyboardAnimator</code>.</p></li>
+<li>
+<p>Use <code>addAnimation:</code> method:</p>
+
+<pre><code>// An example of animating a frame
+__weak typeof(self) weakSelf = self;
+[keyboardManager addAnimation: ^(AAKeyboardNotification *notification) {
+  CGRect frame = weakSelf.myView.frame;
+  CGFloat keyboardHeight = notification.newFrame.size.height;
+  if(notification.type == AAKeyboardWillShow)
+    frame.size.height -= keyboardHeight;
+  else if(notification.type == AAKeyboardWillHide)
+    frame.size.height += keyboardHeight;
+}
+</code></pre>
+</li>
+</ul>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p>Anıl Anar</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>AAKeyboardManager is available under the MIT license. See the LICENSE file for more info.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-60258316-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
